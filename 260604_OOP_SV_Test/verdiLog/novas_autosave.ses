@@ -1,0 +1,101 @@
+@verdi rc file Version 1.0
+[General]
+saveDB = TRUE
+relativePath = FALSE
+saveSingleView = FALSE
+saveNWaveWinId = 
+VerdiVersion = Verdi_X-2025.06-1
+[KeyNote]
+Line1 = Automatic Backup 0
+Line2 = Save Open Database Information: Yes
+Line3 = Path Option: Absolute Paths
+Line4 = Windows Option: All Windows
+[OneSearch]
+isExisted = TRUE
+[TestBench]
+ConstrViewShow = 0
+InherViewShow = 0
+FSDBMsgShow = 0
+AnnotationShow = 0
+DeclViewShow = 0
+Console = TRUE
+powerDumped = 0
+breakpoint_count = 1
+BP1 = stop -line 118 -file /home/pedu34/workspace/260604_OOP_SV_Test/tb_ram.sv -disable
+[fusa]
+fdb_server = 
+fdb_proj = 
+fdb_campaign = 
+fdb_tool = 
+[hb]
+postSimFile = /home/pedu34/workspace/260604_OOP_SV_Test/inter.fsdb
+syncTime = 25000
+viewport = 942 334 900 700 0 0 291 898
+activeNode = "tb_ram"
+activeScope = "tb_ram"
+activeFile = "tb_ram.sv"
+interactiveMode = False
+viewType = Source
+simulatorMode = False
+sourceBeginLine = 103
+baMode = False
+srcLineNum = True
+AutoWrap = True
+IdentifyFalseLogic = False
+syncSignal = False
+traceMode = Hierarchical
+showTraceInSchema = True
+paMode = False
+funcMode = False
+powerAwareAnnot = True
+safetyAwareAnnot = True
+amsAnnot = True
+DnDtraceCrossHierOnly = True
+leadingZero = False
+signalPane = False
+SourceVerticalScrollLines = 5
+Scope1 = "tb_ram"
+Scope2 = "tb_ram.ram_dut"
+rangeSelection = 113 113 1 14 1 1
+multipleSelection = 2 112 6 0 0 112 11 0 0
+sdfCheckUndef = FALSE
+simFlow = FALSE
+[hb.design]
+importCmd = "-dbdir" "./simv.daidir" 
+invokeDir = /home/pedu34/workspace/260604_OOP_SV_Test
+[hb.sourceTab.1]
+scope = tb_ram
+File = /home/pedu34/workspace/260604_OOP_SV_Test/tb_ram.sv
+Line = 104
+[nMemoryManager]
+WaveformFile = /home/pedu34/workspace/260604_OOP_SV_Test/inter.fsdb
+UserActionNum = 0
+nMemWindowNum = 0
+[wave.0]
+viewPort = 0 11 596 314 100 65
+primaryWindow = TRUE
+SessionFile = /home/pedu34/workspace/260604_OOP_SV_Test/verdiLog/novas_autosave.ses.wave.0
+displayGrid = FALSE
+hierarchicalName = FALSE
+waveformToolTip = FALSE
+snap = TRUE
+displayLeadingZeros = FALSE
+displayGridLine = FALSE
+fixDelta = FALSE
+displayCursorMarker = FALSE
+autoUpdate = FALSE
+highlightGlitchs = FALSE
+waveformSyncCursorMarker = FALSE
+waveformSyncHorizontalRange = FALSE
+waveformSyncVerticalscroll = FALSE
+displayErrors = TRUE
+displayMsgSymbols = TRUE
+showMsgDescriptions = TRUE
+autoFit = FALSE
+displayDeltaY = FALSE
+centerCursor = FALSE
+fsaRegMask = TRUE
+fsaCoreMask = TRUE
+fsaSfsmMask = TRUE
+fsaEcrMask = TRUE
+tPropMask = TRUE

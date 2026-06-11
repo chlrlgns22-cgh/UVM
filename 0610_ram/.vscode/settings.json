@@ -1,0 +1,9 @@
+{
+    "verilog.linting.linter": "none",
+    "verilog.linting.slang.includePath": [
+        "/home/pedu34/bin/uvm_stub",
+        "${workspaceFolder}/tb",
+        "${workspaceFolder}/rtl"
+    ],
+    "verilog.linting.slang.arguments": "--preinclude /home/pedu34/bin/uvm_stub/uvm_macros.svh"
+}

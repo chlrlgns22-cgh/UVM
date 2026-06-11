@@ -1,0 +1,18 @@
+{
+  "systemverilogFormatter.veribleBuild": "linux-static-x86_64",
+  "systemverilogFormatter.commandLineArguments": "--indentation_spaces 4",
+  "verilog.linting.linter": "verible-verilog-lint",
+  "verilog.linting.path": "/home/pedu34/.vscode-server/extensions/bmpenuelas.systemverilog-formatter-vscode-3.4.1/verible_release/linux-static-x86_64.tar.gz/verible-v0.0-3969-g6a70680a/bin",
+  "verilog.linting.veribleVerilogLint.arguments": "",
+  "verilog.linting.veribleVerilogLint.runAtFileLocation": true,
+  "verilog.languageServer.veribleVerilogLs.enabled": false,
+  "verilog.ctags.enabled": false,
+  "[systemverilog]": {
+    "editor.defaultFormatter": "bmpenuelas.systemverilog-formatter-vscode",
+    "editor.formatOnSave": false
+  },
+  "[verilog]": {
+    "editor.defaultFormatter": "bmpenuelas.systemverilog-formatter-vscode",
+    "editor.formatOnSave": false
+  }
+}

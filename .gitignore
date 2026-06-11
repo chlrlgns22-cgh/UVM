@@ -1,0 +1,32 @@
+# VCS build outputs
+simv
+simv.daidir/
+csrc/
+*.o
+*.so
+*.d
+*.a
+
+# VCS logs & keys
+*.log
+*.key
+tr_db.log
+vc_hdrs.h
+vc_hdrs.c
+ucli.key
+
+# Waveform files
+*.fsdb
+*.vcd
+*.shm/
+
+# Novas/Verdi
+novas.conf
+novas.rc
+
+# Vim swap
+*.swp
+*.swo
+
+# push script (contains token)
+push_to_github.sh
