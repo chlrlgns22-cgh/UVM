@@ -20,9 +20,24 @@ ucli.key
 *.vcd
 *.shm/
 
-# Novas/Verdi
+# Coverage databases
+coverage.vdb/
+simv.vdb/
+simv.cst/
+*.vdb/
+
+# Verdi/Novas logs
+verdiLog/
+vdCovLog/
 novas.conf
 novas.rc
+*.ses
+*.ses.config
+*.ses.png
+*.ses.wave.*
+*.sml
+*.conf
+vdCov.conf
 
 # Vim swap
 *.swp
