@@ -21,7 +21,7 @@ module tb_top ();
     initial begin
         //delay code가 uvm 실행 앞에 있으면 error 발생.
         uvm_config_db#(virtual ram_if)::set(null, "", "r_if", r_if);
-        run_test("ram_tes");
+        run_test("ram_test");
     end
 
     initial begin
