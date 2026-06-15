@@ -52,11 +52,16 @@ class spi_directed_seq extends spi_base_seq;
 
     task body();
         `uvm_info(get_type_name(), "SPI 지정 시나리오 시작", UVM_LOW)
-        do_transfer(8'h00, 8'h00);  // 경계값: 최솟값
-        do_transfer(8'hFF, 8'hFF);  // 경계값: 최댓값
-        do_transfer(8'hAA, 8'h55);  // 교번 패턴
-        do_transfer(8'h55, 8'hAA);
-        do_transfer(8'h12, 8'h34);  // 임의 값
+        // ---- cx_m_s cross coverage 16 bin 중 코너(0/0, FF/FF, 0/FF, FF/0) 보장 ----
+        do_transfer(8'h00, 8'h00);  // (tx_zero, tx_zero)
+        do_transfer(8'hFF, 8'hFF);  // (tx_max,  tx_max)
+        do_transfer(8'h00, 8'hFF);  // (tx_zero, tx_max)  - random으로는 1/65536
+        do_transfer(8'hFF, 8'h00);  // (tx_max,  tx_zero) - random으로는 1/65536
+
+        do_transfer(8'hAA, 8'h55);  // 교번 패턴 (high, low)
+        do_transfer(8'h55, 8'hAA);  // 교번 패턴 (low, high)
+        do_transfer(8'h12, 8'h34);  // 임의 값 (low, low)
+        do_transfer(8'hC3, 8'hD7);  // 임의 값 (high, high)
         `uvm_info(get_type_name(), "SPI 지정 시나리오 종료.", UVM_LOW)
     endtask
 endclass

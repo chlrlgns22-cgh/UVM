@@ -8,7 +8,7 @@ VCS_INCDIR = +incdir+tb +incdir+rtl
 VCS_SRC_FILES = ./rtl/spi_master.sv ./rtl/spi_slave_top.sv ./rtl/spi_uvm.sv \
                 ./tb/spi_if.sv ./tb/spi_pkg.sv ./tb/tb_top.sv
 
-TEST ?= spi_random_test
+TEST ?= spi_full_cov_test
 SEED ?= 1
 INFO_LEVEL ?= UVM_MEDIUM
 

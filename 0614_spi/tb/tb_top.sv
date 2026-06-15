@@ -28,7 +28,7 @@ module tb_top ();
 
     initial begin
         uvm_config_db#(virtual spi_if)::set(null, "", "s_if", s_if);
-        run_test("spi_random_test");
+        run_test("spi_full_cov_test");
     end
 
     initial begin
