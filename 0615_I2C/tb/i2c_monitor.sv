@@ -38,14 +38,16 @@ class i2c_monitor extends uvm_monitor;
 
             // ── 3. 데이터 페이즈 캡처 ────────────────────────────
             if (!tr.rw) begin
-                // WRITE: 전송 데이터 캡처
+                // WRITE: master 전송 데이터 캡처 → done 후 slave_rxd 캡처
+                // (slave_done은 master_done보다 먼저 발생 → done 시점에 slave_rx_data 유효)
                 @(m_if.mon_cb iff m_if.mon_cb.cmd_write);
                 tr.wdata = m_if.mon_cb.tx_data;
                 @(m_if.mon_cb iff m_if.mon_cb.done);
+                tr.slave_rxd = m_if.mon_cb.slave_rx_data;
             end else begin
-                // READ: slave 설정 값 및 수신 데이터 캡처
+                // READ: slave_tx_data 설정값 캡처 → done 후 master 수신 데이터 캡처
                 @(m_if.mon_cb iff m_if.mon_cb.cmd_read);
-                tr.slave_resp = m_if.mon_cb.slave_tx_data;
+                tr.slave_tx = m_if.mon_cb.slave_tx_data;
                 @(m_if.mon_cb iff m_if.mon_cb.done);
                 tr.rdata = m_if.mon_cb.rx_data;
             end

@@ -13,7 +13,9 @@ interface i2c_if (
     logic       busy;
     logic       done;
     logic       scl;
-    logic [7:0] slave_tx_data;  // BFM read data (driver sets before READ)
+    logic [7:0] slave_tx_data;  // slave → master 전송 데이터 (driver가 READ 전 설정)
+    logic [7:0] slave_rx_data;  // slave가 수신한 데이터 (slave RTL 출력, 관측용)
+    logic       slave_done;     // slave 수신/전송 완료 (slave RTL 출력, 관측용)
 
     clocking drv_cb @(posedge clk);
         default input #1step output #0;
@@ -41,6 +43,8 @@ interface i2c_if (
         input tx_data;
         input ack_in;
         input slave_tx_data;
+        input slave_rx_data;
+        input slave_done;
         input rx_data;
         input ack_out;
         input busy;

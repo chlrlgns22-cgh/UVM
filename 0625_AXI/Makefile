@@ -1,17 +1,17 @@
-VCS_OPTS = -full64 -sverilog
+VCS_OPTS  = -full64 -sverilog
 VCS_OPTS += -ntb_opts uvm-1.2
 VCS_OPTS += -timescale=1ns/10ps
 VCS_OPTS += -debug_access+all -kdb -lca
 VCS_OPTS += -cm line+cond+fsm+tgl+branch+assert
 VCS_OUTPUT = -o simv
 VCS_INCDIR = +incdir+tb +incdir+rtl
-VCS_SRC_FILES = ./rtl/i2c_master.sv \
-                ./rtl/i2c_slave_watch_top.sv \
-                ./tb/i2c_if.sv \
-                ./tb/i2c_pkg.sv \
+VCS_SRC_FILES = ./rtl/gpio_v1_0_S00_AXI.v \
+                ./rtl/gpio_v1_0.v \
+                ./tb/gpio_if.sv \
+                ./tb/gpio_pkg.sv \
                 ./tb/tb_top.sv
 
-TEST       ?= i2c_random_test
+TEST       ?= gpio_full_cov_test
 SEED       ?= 1
 INFO_LEVEL ?= UVM_MEDIUM
 

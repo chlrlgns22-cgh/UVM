@@ -41,8 +41,8 @@ class i2c_driver extends uvm_driver #(i2c_seq_item);
     endtask
 
     task drive_transaction(i2c_seq_item item);
-        // BFM용 read 데이터 미리 설정
-        m_if.drv_cb.slave_tx_data <= item.slave_resp;
+        // slave READ용 데이터 미리 설정 (slave RTL의 tx_data 포트)
+        m_if.drv_cb.slave_tx_data <= item.slave_tx;
         @(m_if.drv_cb);
 
         // ── 1. START ─────────────────────────────────────────────

@@ -17,9 +17,9 @@ class i2c_base_seq extends uvm_sequence #(i2c_seq_item);
     task do_read(bit [6:0] addr, bit [7:0] slave_data);
         i2c_seq_item item = i2c_seq_item::type_id::create("item");
         start_item(item);
-        item.addr       = addr;
-        item.rw         = 1'b1;
-        item.slave_resp = slave_data;
+        item.addr     = addr;
+        item.rw       = 1'b1;
+        item.slave_tx = slave_data;
         finish_item(item);
     endtask
 endclass
@@ -59,12 +59,12 @@ class i2c_directed_seq extends i2c_base_seq;
 
     task body();
         `uvm_info(get_type_name(), "I2C 지정 시나리오 시작", UVM_LOW)
-        do_write(7'h50, 8'h00);   // 경계값 최솟값
-        do_write(7'h50, 8'hFF);   // 경계값 최댓값
-        do_write(7'h50, 8'hAA);   // 교번 패턴
-        do_read (7'h50, 8'h00);   // READ 최솟값
-        do_read (7'h50, 8'hFF);   // READ 최댓값
-        do_read (7'h50, 8'h55);   // READ 교번 패턴
+        do_write(7'h12, 8'h00);   // 경계값 최솟값
+        do_write(7'h12, 8'hFF);   // 경계값 최댓값
+        do_write(7'h12, 8'hAA);   // 교번 패턴
+        do_read (7'h12, 8'h00);   // READ 최솟값
+        do_read (7'h12, 8'hFF);   // READ 최댓값
+        do_read (7'h12, 8'h55);   // READ 교번 패턴
         `uvm_info(get_type_name(), "I2C 지정 시나리오 종료.", UVM_LOW)
     endtask
 endclass

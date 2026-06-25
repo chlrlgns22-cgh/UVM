@@ -25,7 +25,13 @@ class i2c_scoreboard extends uvm_scoreboard;
 
         if (!tr.rw) begin
             write_count++;
-            // WRITE: 추가 데이터 ACK는 ack_out으로 확인 가능
+            // WRITE: slave가 실제 수신한 데이터 == master가 전송한 데이터
+            if (ok && (tr.slave_rxd !== tr.wdata)) begin
+                `uvm_error(get_type_name(),
+                    $sformatf("FAIL WRITE #%0d: master_tx=0x%02h slave_rx=0x%02h (불일치)",
+                               write_count, tr.wdata, tr.slave_rxd))
+                ok = 0;
+            end
             if (ok) begin
                 pass_count++;
                 `uvm_info(get_type_name(),
@@ -35,11 +41,11 @@ class i2c_scoreboard extends uvm_scoreboard;
                 fail_count++;
         end else begin
             read_count++;
-            // READ: 수신 데이터와 슬레이브 설정값 비교
-            if (tr.rdata !== tr.slave_resp) begin
+            // READ: master가 수신한 데이터 == slave가 전송하도록 설정된 데이터
+            if (ok && (tr.rdata !== tr.slave_tx)) begin
                 `uvm_error(get_type_name(),
-                    $sformatf("FAIL READ #%0d: 기대=0x%02h 수신=0x%02h",
-                               read_count, tr.slave_resp, tr.rdata))
+                    $sformatf("FAIL READ #%0d: slave_tx=0x%02h master_rx=0x%02h (불일치)",
+                               read_count, tr.slave_tx, tr.rdata))
                 ok = 0;
             end
             if (ok) begin

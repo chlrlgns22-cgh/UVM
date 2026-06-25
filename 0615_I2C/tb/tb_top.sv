@@ -6,11 +6,15 @@ module tb_top ();
     initial clk = 0;
     always #5 clk = ~clk;
 
-    wire sda;
-    pullup (sda);  // I2C 오픈드레인 풀업 저항 모델
+    // I2C 오픈드레인 버스: pullup + master/slave 모두 드라이브 가능
+    wire  sda;
+    logic slave_sda_o;
+    pullup (sda);
+    assign sda = slave_sda_o ? 1'bz : 1'b0;  // slave 오픈드레인 구동
 
     i2c_if m_if (.clk(clk));
 
+    // ── DUT: I2C Master ──────────────────────────────────────────
     i2c_master_top dut (
         .clk      (m_if.clk),
         .rst      (m_if.rst),
@@ -25,14 +29,21 @@ module tb_top ();
         .busy     (m_if.busy),
         .done     (m_if.done),
         .scl      (m_if.scl),
-        .sda      (sda)
+        .sda      (sda)           // i2c_master_top 내부에서 오픈드레인 처리
     );
 
-    i2c_slave_bfm #(.SLAVE_ADDR(7'h50)) u_slave (
-        .rst           (m_if.rst),
-        .sda           (sda),
-        .scl           (m_if.scl),
-        .slave_tx_data (m_if.slave_tx_data)
+    // ── Slave RTL: I2C Slave (SLAVE_ADDR=7'h12) ──────────────────
+    i2c_slave #(.SLAVE_ADDR(7'h12)) u_slave (
+        .clk       (m_if.clk),
+        .rst       (m_if.rst),
+        .scl       (m_if.scl),
+        .sda_i     (sda),
+        .sda_o     (slave_sda_o),
+        .tx_data   (m_if.slave_tx_data),   // driver가 READ 전 설정
+        .rx_data   (m_if.slave_rx_data),   // monitor가 WRITE 후 확인
+        .done      (m_if.slave_done),
+        .read_start(),
+        .read_next ()
     );
 
     initial begin
